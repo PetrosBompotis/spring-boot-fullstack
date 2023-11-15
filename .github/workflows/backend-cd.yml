@@ -70,5 +70,5 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "Update Dockerrun.aws.json docker image with new tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
-          git push
+          git push https://$GITHUB_ACTOR:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/PetrosBompotis/spring-boot-fullstack.git
 
