@@ -30,12 +30,12 @@ jobs:
         working-directory: ./backend
 
     steps:
+      - uses: actions/checkout@v4
       - name: Send Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json' 
           --data '{"text":"Deployment started"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
-      - uses: actions/checkout@v4
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'

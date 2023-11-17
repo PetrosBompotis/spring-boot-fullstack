@@ -28,7 +28,6 @@ public class Main {
             String firstName = name.firstName();
             String lastName = name.lastName();
 
-
             Customer customer = new Customer(random.nextInt(16,99),
                     firstName + " " + lastName,
                     firstName.toLowerCase() + "." + lastName.toLowerCase() + "amigoscode.com"
