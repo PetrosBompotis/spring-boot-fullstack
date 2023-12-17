@@ -38,7 +38,8 @@ public class CustomerService {
         Customer customer = new Customer(
                 customerRegistrationRequest.age(),
                 customerRegistrationRequest.name(),
-                customerRegistrationRequest.email()
+                customerRegistrationRequest.email(),
+                customerRegistrationRequest.gender()
         );
         customerDAO.insertCustomer(customer);
 

@@ -2,6 +2,7 @@ package com.amigoscode;
 
 import com.amigoscode.customer.Customer;
 import com.amigoscode.customer.CustomerRepository;
+import com.amigoscode.customer.Gender;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import org.springframework.boot.CommandLineRunner;
@@ -27,10 +28,12 @@ public class Main {
             Random random = new Random();
             String firstName = name.firstName();
             String lastName = name.lastName();
-
-            Customer customer = new Customer(random.nextInt(16,99),
+            int age = random.nextInt(16, 99);
+            Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
+            Customer customer = new Customer(age,
                     firstName + " " + lastName,
-                    firstName.toLowerCase() + "." + lastName.toLowerCase() + "amigoscode.com"
+                    firstName.toLowerCase() + "." + lastName.toLowerCase() + "amigoscode.com",
+                    gender
                     );
 
             customerRepository.save(customer);

@@ -53,7 +53,7 @@ const App = () => {
           <Wrap justify={"center"} spacing={"30px"}>
             {customers.map((customer, index) => (
                 <WrapItem>
-                    <CardWithImage {...customer}/>
+                    <CardWithImage {...customer} imageNumber={index}/>
                 </WrapItem>
           ))}
           </Wrap>

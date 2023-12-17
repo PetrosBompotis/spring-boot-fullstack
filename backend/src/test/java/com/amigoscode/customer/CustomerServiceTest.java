@@ -39,7 +39,7 @@ class CustomerServiceTest {
     void canGetCustomer() {
         long id = 1L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@",Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -66,7 +66,7 @@ class CustomerServiceTest {
         when(customerDAO.existsPersonWithEmail(email)).thenReturn(false);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                12,"petros", email
+                12,"petros", email, Gender.MALE
         );
 
         underTest.addCustomer(request);
@@ -89,7 +89,7 @@ class CustomerServiceTest {
         when(customerDAO.existsPersonWithEmail(email)).thenReturn(true);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                12,"petros", email
+                12,"petros", email, Gender.MALE
         );
 
         assertThatThrownBy(() -> underTest.addCustomer(request))
@@ -125,7 +125,7 @@ class CustomerServiceTest {
     void canUpdateAllCustomersProperties() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -154,7 +154,7 @@ class CustomerServiceTest {
     void canUpdateCustomersNameProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -180,7 +180,7 @@ class CustomerServiceTest {
     void canUpdateCustomersEmailProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -208,7 +208,7 @@ class CustomerServiceTest {
     void willThrowWhenEmailExistsWhileUpdatingCustomer() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -231,7 +231,7 @@ class CustomerServiceTest {
     void canUpdateCustomersAgeProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -257,7 +257,7 @@ class CustomerServiceTest {
     void willTrowWhenCustomerUpdateHasNoChanges() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@"
+                id,11,"maria","mar@", Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 

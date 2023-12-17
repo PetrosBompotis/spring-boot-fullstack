@@ -41,7 +41,7 @@ class CustomerJPADataAccessServiceTest {
 
     @Test
     void insertCustomer() {
-        Customer insertCustomer = new Customer(1L,11,"maria","mar@");
+        Customer insertCustomer = new Customer(1L,11,"maria","mar@", Gender.MALE);
         underTest.insertCustomer(insertCustomer);
         verify(customerRepository).save(insertCustomer);
     }
@@ -69,7 +69,7 @@ class CustomerJPADataAccessServiceTest {
 
     @Test
     void updateCustomerById() {
-        Customer updateCustomer = new Customer(1L,11,"maria","mar@");
+        Customer updateCustomer = new Customer(1L,11,"maria","mar@",Gender.MALE);
         underTest.updateCustomerById(updateCustomer);
         verify(customerRepository).save(updateCustomer);
     }
