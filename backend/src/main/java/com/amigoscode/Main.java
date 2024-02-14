@@ -30,11 +30,9 @@ public class Main {
             String lastName = name.lastName();
             int age = random.nextInt(16, 99);
             Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-            Customer customer = new Customer(age,
-                    firstName + " " + lastName,
-                    firstName.toLowerCase() + "." + lastName.toLowerCase() + "amigoscode.com",
+            Customer customer = new Customer(firstName + " " + lastName, firstName.toLowerCase() + "." + lastName.toLowerCase() + "amigoscode.com", "password", age,
                     gender
-                    );
+            );
 
             customerRepository.save(customer);
        };

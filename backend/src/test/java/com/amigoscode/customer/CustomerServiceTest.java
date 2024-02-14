@@ -3,20 +3,17 @@ package com.amigoscode.customer;
 import com.amigoscode.exception.DuplicateResourceException;
 import com.amigoscode.exception.RequestValidationException;
 import com.amigoscode.exception.ResourceNotFoundException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +36,7 @@ class CustomerServiceTest {
     void canGetCustomer() {
         long id = 1L;
         Customer customer = new Customer(
-                id,11,"maria","mar@",Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -125,7 +122,7 @@ class CustomerServiceTest {
     void canUpdateAllCustomersProperties() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -154,7 +151,7 @@ class CustomerServiceTest {
     void canUpdateCustomersNameProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -180,7 +177,7 @@ class CustomerServiceTest {
     void canUpdateCustomersEmailProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -208,7 +205,7 @@ class CustomerServiceTest {
     void willThrowWhenEmailExistsWhileUpdatingCustomer() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -231,7 +228,7 @@ class CustomerServiceTest {
     void canUpdateCustomersAgeProperty() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 
@@ -257,7 +254,7 @@ class CustomerServiceTest {
     void willTrowWhenCustomerUpdateHasNoChanges() {
         long id = 0L;
         Customer customer = new Customer(
-                id,11,"maria","mar@", Gender.MALE
+                id, "maria", "mar@", "password", 11, Gender.MALE
         );
         when(customerDAO.selectCustomerByID(id)).thenReturn(Optional.of(customer));
 

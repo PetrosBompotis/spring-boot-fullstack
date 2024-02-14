@@ -63,7 +63,7 @@ public class CustomerIntegrationTest {
                 .getResponseBody();
         //make sure that customer is present
         Customer expectedCustomer = new Customer(
-                age, name ,email, gender
+                name, email, "password", age, gender
         );
 
         assertThat(allCustomers)
@@ -209,7 +209,7 @@ public class CustomerIntegrationTest {
                 .getResponseBody();
 
         Customer expectedCustomer = new Customer(
-                id, age, newName ,email,
+                id, newName, email, "password", age,
                 gender);
 
         assertThat(updatedCustomer).isEqualTo(expectedCustomer);
