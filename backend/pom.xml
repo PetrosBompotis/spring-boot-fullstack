@@ -21,7 +21,7 @@
 		<docker.username>petrosbob</docker.username>
 		<docker.image.name>amigoscode-api</docker.image.name>
 		<docker.image.tag/>
-		<jsonwebtoken.version>0.12.3</jsonwebtoken.version>
+		<jsonwebtoken.version>0.11.3</jsonwebtoken.version>
 	</properties>
 
 	<dependencies>
