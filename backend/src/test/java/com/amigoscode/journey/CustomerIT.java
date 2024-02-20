@@ -19,12 +19,12 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CustomerIntegrationTest {
+public class CustomerIT {
     @Autowired
     private WebTestClient webTestClient;
 
     private static final Random RANDOM = new Random();
-    private static final String CUSTOMER_URI = "api/v1/customers";
+    private static final String CUSTOMER_PATH = "api/v1/customers";
     @Test
     void canRegisterACustomer() {
         //crete registration request
@@ -41,7 +41,7 @@ public class CustomerIntegrationTest {
         );
         //send a post request
         String jwtToken = webTestClient.post()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(request), CustomerRegistrationRequest.class)
@@ -53,7 +53,7 @@ public class CustomerIntegrationTest {
                 .get(0);
         //get all customer
         List<CustomerDTO> allCustomers = webTestClient.get()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
@@ -85,7 +85,7 @@ public class CustomerIntegrationTest {
 
         //get customer by id
         webTestClient.get()
-                .uri(CUSTOMER_URI + "/{id}", id)
+                .uri(CUSTOMER_PATH + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
@@ -116,7 +116,7 @@ public class CustomerIntegrationTest {
 
         // send a post request to create customer 1
         webTestClient.post()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(request), CustomerRegistrationRequest.class)
@@ -126,7 +126,7 @@ public class CustomerIntegrationTest {
 
         // send a post request to create customer 2
         String jwtToken =webTestClient.post()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(request2), CustomerRegistrationRequest.class)
@@ -140,7 +140,7 @@ public class CustomerIntegrationTest {
 
         //get all customer
         List<CustomerDTO> allCustomers = webTestClient.get()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
@@ -158,7 +158,7 @@ public class CustomerIntegrationTest {
 
         // customer 2 deletes customer 1
         webTestClient.delete()
-                .uri(CUSTOMER_URI+ "/{id}", id)
+                .uri(CUSTOMER_PATH + "/{id}", id)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
@@ -167,7 +167,7 @@ public class CustomerIntegrationTest {
 
         // customer 2 gets customer 1 by id
         webTestClient.get()
-                .uri(CUSTOMER_URI + "/{id}", id)
+                .uri(CUSTOMER_PATH + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
@@ -192,7 +192,7 @@ public class CustomerIntegrationTest {
 
         //send a post request
         String jwtToken =webTestClient.post()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(request), CustomerRegistrationRequest.class)
@@ -206,7 +206,7 @@ public class CustomerIntegrationTest {
 
         //get all customer
         List<CustomerDTO> allCustomers = webTestClient.get()
-                .uri(CUSTOMER_URI)
+                .uri(CUSTOMER_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
@@ -230,7 +230,7 @@ public class CustomerIntegrationTest {
 
         //send a put request
         webTestClient.put()
-                .uri(CUSTOMER_URI+ "/{id}", id)
+                .uri(CUSTOMER_PATH + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -241,7 +241,7 @@ public class CustomerIntegrationTest {
 
         //get customer by id
         CustomerDTO updatedCustomer = webTestClient.get()
-                .uri(CUSTOMER_URI + "/{id}", id)
+                .uri(CUSTOMER_PATH + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
